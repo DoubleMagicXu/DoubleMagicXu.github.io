@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="图形学笔记曲线与曲面插值与拟合概念：给定n个点$$(x_1,y_1)….(x_n,y_n)$$,求m次代数多项式$$P_m(x)=x_0+x1x…+xmx^m$$(m&amp;lt;n)作原函数$$f(x)$$的近似拟合满足$$R=\sum{i=1}^{n}[y_i-P_m(x_i)]^2$$最小化.则$$P_m(x)$$叫$$f(x)$$的m次拟合多项式。当$$m=n-1,R=0$$;此时$$P_m(x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机图形学">
+<meta property="og:url" content="http://yoursite.com/2017/10/18/计算机图形学/index.html">
+<meta property="og:site_name" content="DoubleMagicXuの博客">
+<meta property="og:description" content="图形学笔记曲线与曲面插值与拟合概念：给定n个点$$(x_1,y_1)….(x_n,y_n)$$,求m次代数多项式$$P_m(x)=x_0+x1x…+xmx^m$$(m&amp;lt;n)作原函数$$f(x)$$的近似拟合满足$$R=\sum{i=1}^{n}[y_i-P_m(x_i)]^2$$最小化.则$$P_m(x)$$叫$$f(x)$$的m次拟合多项式。当$$m=n-1,R=0$$;此时$$P_m(x">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/DoubleMagicXu/matlab/master/%E5%A4%8D%E4%B9%A0/Phong.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/DoubleMagicXu/matlab/master/%E5%A4%8D%E4%B9%A0/Whitted.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/DoubleMagicXu/matlab/master/%E5%A4%8D%E4%B9%A0/IFS.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/DoubleMagicXu/matlab/master/%E5%A4%8D%E4%B9%A0/Julia.jpg">
+<meta property="og:updated_time" content="2018-01-18T17:03:39.392Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="计算机图形学">
+<meta name="twitter:description" content="图形学笔记曲线与曲面插值与拟合概念：给定n个点$$(x_1,y_1)….(x_n,y_n)$$,求m次代数多项式$$P_m(x)=x_0+x1x…+xmx^m$$(m&amp;lt;n)作原函数$$f(x)$$的近似拟合满足$$R=\sum{i=1}^{n}[y_i-P_m(x_i)]^2$$最小化.则$$P_m(x)$$叫$$f(x)$$的m次拟合多项式。当$$m=n-1,R=0$$;此时$$P_m(x">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/DoubleMagicXu/matlab/master/%E5%A4%8D%E4%B9%A0/Phong.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/10/18/计算机图形学/"/>
+
+
+
+
+
+  <title>计算机图形学 | DoubleMagicXuの博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DoubleMagicXuの博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/18/计算机图形学/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DoubleMagicXu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DoubleMagicXuの博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">计算机图形学</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-18T23:41:29+01:00">
+                2017-10-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="图形学笔记"><a href="#图形学笔记" class="headerlink" title="图形学笔记"></a>图形学笔记</h1><h2 id="曲线与曲面"><a href="#曲线与曲面" class="headerlink" title="曲线与曲面"></a>曲线与曲面</h2><h3 id="插值与拟合"><a href="#插值与拟合" class="headerlink" title="插值与拟合"></a>插值与拟合</h3><p>概念：给定n个点$$(x_1,y_1)….(x_n,y_n)$$,求m次代数多项式$$P_m(x)=x_0+x<em>1x…+xmx^m$$(m&lt;n)作原函数$$f(x)$$的近似拟合满足$$R=\sum</em>{i=1}^{n}[y_i-P_m(x_i)]^2$$最小化.则$$P_m(x)$$叫$$f(x)$$的m次拟合多项式。当$$m=n-1,R=0$$;此时$$P_m(x)称为$$$$f(x)$$的插值多项式(重建函数).</p>
+<a id="more"></a>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">x=<span class="number">0</span> : <span class="number">.1</span> : <span class="number">1</span>;</span><br><span class="line">y=[<span class="number">-.447</span> <span class="number">1.978</span> <span class="number">3.28</span> <span class="number">6.18</span> <span class="number">7.02</span> <span class="number">7.32</span> <span class="number">7.88</span> <span class="number">9.56</span> <span class="number">9.56</span> <span class="number">9.30</span> <span class="number">11.2</span>];</span><br><span class="line">n=<span class="number">2</span>;</span><br><span class="line">p=polyfit(x,y,n);</span><br><span class="line">xi=<span class="built_in">linspace</span>(<span class="number">0</span>,<span class="number">1</span>,<span class="number">100</span>);</span><br><span class="line">yi=polyval(p,xi);</span><br><span class="line">plot(x,y,<span class="string">'o'</span>,xi,yi);</span><br><span class="line">xlabel(<span class="string">'x'</span>),ylabel(<span class="string">'y=f(x)'</span>);</span><br></pre></td></tr></table></figure>
+<p><strong>三次样条插值</strong></p>
+<p>概念:三次样条曲线是由多段三次多项式曲线光滑拼接而成。各段多项式一般是不同的，相邻段之间端点处的一阶导数与二阶导数相同。</p>
+<p>函数：spline()</p>
+<p><strong>Hermite曲线</strong></p>
+<p>概念:       已知端点以及端点处切向量求得的三次多项式曲线称为Hermite插值曲线，也叫做Ferguson曲线。</p>
+<p><strong>贝塞尔曲线</strong></p>
+<p>贝塞尔曲线的几何性质<br>       贝塞尔曲线是一种磨光曲线，可以通过割掉特征多边形顶角得到，具有一些重要特性，例如如下几个性质：<br>       贝塞尔曲线的起点就是第一个控制点，曲线终点是最后一个控制点。<br>       顺次连接控制点形成的多边形称为贝塞尔曲线的特征多边形。贝塞尔曲线起点处切线与终点处切线分别是特征多边形的第一条边和最后一条边所在射线，并且切失的模长分别为相应边长的n倍。<br>       对区间[0, 1]的任意值t，点(x(t),y(t))一定落在特征多边形形成的凸包内。</p>
+<p>$$P(t)=\begin{bmatrix}t^3 &amp;t^2&amp; t&amp; 1\end{bmatrix}\begin{bmatrix}-1&amp;3&amp;-3&amp;1\3&amp;-6&amp;3&amp;0\-3&amp;3&amp;0&amp;0\1&amp;0&amp;0&amp;0\end{bmatrix}\begin{bmatrix}P_0\P_1\P2\P3\end{bmatrix}$$</p>
+<p><strong>B样条曲线</strong></p>
+<p>$$P(t)=\frac{1}{6}\begin{bmatrix}t^3 &amp;t^2&amp; t&amp; 1\end{bmatrix}\begin{bmatrix}-1&amp;3&amp;-3&amp;1\3&amp;-6&amp;3&amp;0\-3&amp;0&amp;3&amp;0\1&amp;4&amp;1&amp;0\end{bmatrix}\begin{bmatrix}P_0\P_1\P2\P3\end{bmatrix}$$</p>
+<p><strong>曲线拼接</strong></p>
+<p>关键:拼接处值以及一阶导相等.</p>
+<p>对于三次贝塞尔曲线:$$P_3,P_4,P_5$$共线则可以在$$P_4$$处光滑连接.</p>
+<p>对于二次B样条曲线:曲线１($$P_1,P_2,P_3$$)，曲线２($$P_2,P_3,P_4$$)光滑拼接.</p>
+<p><strong>双三次贝塞尔曲面</strong></p>
+<p>$$P(u,v)=\begin{bmatrix}u^3&amp;u^2&amp;u&amp;1\end{bmatrix}\begin{bmatrix}-1&amp;3&amp;-3&amp;1\3&amp;-6&amp;3&amp;0\-3&amp;3&amp;0&amp;0\1&amp;0&amp;0&amp;0\end{bmatrix}\begin{bmatrix}P<em>{00}&amp;P</em>{01}&amp;P<em>{02}&amp;P</em>{03}\P<em>{10}&amp;P</em>{11}&amp;P<em>{12}&amp;P</em>{13}\P<em>{20}&amp;P</em>{21}&amp;P<em>{22}&amp;P</em>{23}\P<em>{30}&amp;P{31}&amp;P</em>{32}&amp;P_{33}\end{bmatrix}\begin{bmatrix}-1&amp;3&amp;-3&amp;1\3&amp;-6&amp;3&amp;0\-3&amp;3&amp;0&amp;0\1&amp;0&amp;0&amp;0\end{bmatrix}\begin{bmatrix}v^3\v^2\^v\1\end{bmatrix}$$</p>
+<p><strong>双三次Ｂ样条曲面</strong></p>
+<p>$$P(u,v)=\frac{1}{6}\begin{bmatrix}u^3&amp;u^2&amp;u&amp;1\end{bmatrix}\begin{bmatrix}-1&amp;3&amp;-3&amp;1\3&amp;-6&amp;3&amp;0\-3&amp;0&amp;3&amp;0\1&amp;4&amp;1&amp;0\end{bmatrix}\begin{bmatrix}P<em>{00}&amp;P</em>{01}&amp;P<em>{02}&amp;P</em>{03}\P<em>{10}&amp;P</em>{11}&amp;P<em>{12}&amp;P</em>{13}\P<em>{20}&amp;P</em>{21}&amp;P<em>{22}&amp;P</em>{23}\P<em>{30}&amp;P{31}&amp;P</em>{32}&amp;P_{33}\end{bmatrix}\begin{bmatrix}-1&amp;3&amp;-3&amp;1\3&amp;-6&amp;3&amp;0\-3&amp;0&amp;3&amp;0\1&amp;4&amp;1&amp;0\end{bmatrix}\begin{bmatrix}v^3\v^2\^v\1\end{bmatrix}$$</p>
+<p><strong>曲面拼接</strong></p>
+<p>双三次贝塞尔曲面光滑拼接<em>充要条件</em>：１２个公共控制定点</p>
+<p>双三次Ｂ样条曲面<em>必要条件</em>：4个公共控制定点</p>
+<p><strong>龙格现象</strong></p>
+<p>高次插值多项式改为分段低次</p>
+<h2 id="几何造型"><a href="#几何造型" class="headerlink" title="几何造型"></a>几何造型</h2><p><strong>几何造型的三种模型</strong><br>    线框模型<br>    表面模型<br>    实体模型</p>
+<p><em>线框(wireframe)模型</em>是用顶点与邻边表示形体的一种模型。线框模型是计算机图形学领域最早用来表示形体的模型，目前也被广泛使用。这种表示方法结构简单、易于理解，又是表面和实体模型的基础。</p>
+<p><em>表面(surface)模型</em>是用棱边围成的部分来定义形体表面，由面的集合来定义形体。表面模型是在线框模型的基础上，增加了有关面边的信息以及表面特征等。 </p>
+<p>可以用下面的描述作为<em>实体模型</em>的定义：<br>    1、能生成立体图形，能明确的定义立体图形的内外部。<br>    2、可以提供清晰的剖面图。<br>    3、方便图形存储、变换、显示等。</p>
+<p><strong>实体模型构造方法</strong></p>
+<pre><code>边界表示法 
+分解表示法 
+扫描造型法 
+</code></pre><p><em>边界表示（B-rep）法</em>是在表面模型的基础上改进的。该方法以物体边界为主干，以表面模型为基础。因为要构造完整的实体，所以表面必须封闭、有向、不自交、有限和互相连接等。在这种表示方法中，既包含几何信息，又包含有拓扑信息。几何信息标示形体的大小，拓扑信息标示顶点、棱边以及表面之间的相互连接关系。</p>
+<p><em>分解表示法</em>是使用小的实体块堆积起来表示实体。分解表示法主要有：（四叉树）八叉树表示法、细胞分解法、空间堆叠法等。</p>
+<p><em>扫描造型法</em>的基本思想是：让一个形体在空间中运动，产生了由这个形体构成的集合，这个集合就是一个新的几何体。简单的扫描形式有两种，即平移和旋转。</p>
+<p>##隐藏面处理与光照效果</p>
+<p><strong>平行投影与透视透视投影</strong></p>
+<p>正平行投影也叫正交投影可以保持物体实际大小,透视投影可以得到真实感图像。</p>
+<p><strong>隐藏面计算方法</strong></p>
+<p><em>背面检测法</em>:    在几何造型一章中，实体模型边界表示法为每个面规定了一个正方向，定义垂直于该面并且<em>背离</em>物体的方向为该面的正方向。对于单个凸多面体，可以按如下步骤计算不可见面。求一个面所在平面的法向量n；求这个平面的视线向量ｖ；计算视线向量与法向量的数量积；根据n与ｖ数量积的符号判断该面是否被遮挡，符号为正，被遮挡；符号为负，没有被遮挡。</p>
+<p><em>深度缓冲器消隐算法</em></p>
+<pre><code>初始化二维数组A（用来存储颜色），屏幕上的点的位置作为数组下标，数组中的值设为背景 色；初始化二维数组Z（用来存储深度），屏幕上的点的位置作为数组下标，数组中的值设置成为0；
+</code></pre><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(各个多边形)</span><br><span class="line">	   &#123;</span><br><span class="line">	      把该多边形投影到视平面（屏幕）上；</span><br><span class="line">	      <span class="keyword">for</span> (多边形所覆盖的每个像素点(x,y))        </span><br><span class="line">	          &#123;</span><br><span class="line">	           计算多边形在该像素的深度值Z(x,y);</span><br><span class="line">	           <span class="keyword">if</span> (Z(x,y)大于数组Z在这个位置上原有的值)</span><br><span class="line">	               &#123;</span><br><span class="line">		    把Z(x,y)存入数组Z，替换该位置原先的值</span><br><span class="line">	                把多边形在(x,y)处的颜色值存入数组A；</span><br><span class="line">	                &#125;</span><br><span class="line">	          &#125;</span><br><span class="line">	    &#125;</span><br></pre></td></tr></table></figure>
+<p><em>画家方法</em>:这种方法按照多边形离观察者的远近建立一张深度优先级表，距离观察者近的优先级高。如果空间中各个多边形都可以区分出远近，那么，先把最远处的多边形绘制在屏幕上，然后从远到近绘制其他多边形。如果投影区域重叠，便使用近处的多边形颜色覆盖先绘制的远处的多边形。</p>
+<p><em>区域细分（Warnock）算法、扫描线算法</em>等等</p>
+<p><strong>光照效果</strong></p>
+<p><em>简单光照模型</em>: 为建模后的物体添加光照效果，最好的办法是对物体可见面上的每一点都添加亮度与颜色。但是，这种方法工作量大，不易实现，所以，要充分利用物体的形状与连接信息添加光照效果。</p>
+<p><em>Phong光照模型</em>:<br><img src="https://raw.githubusercontent.com/DoubleMagicXu/matlab/master/%E5%A4%8D%E4%B9%A0/Phong.jpg" alt=""></p>
+<p>明暗插值方法</p>
+<p><em>哥罗德（Gouraud）强度插值法</em><br>    哥罗德插值方法首先计算多面体每个面的法向量，然后计算一个顶点周围各个面法向量的平均值（求向量和，然后除以面的个数）。把这个平均向量量作为该顶点的法向。<br>    按如此方法，求出每个顶点的法向量。<br>    根据法向量，计算出每个顶点的亮度。<br>    根据顶点的亮度，用插值方法计算每个边上各点的亮度。<br>    根据边上各点的亮度，用插值方法计算区域内各点的亮度。</p>
+<p><em>冯（Phong）法向插值法</em><br>    该方法首先计算多面体每个面的法向量，然后计算一个顶点周围各个面的法向量平均值（求向量和，然后除以面的个数），把这个平均向量作为该顶点的法向量。如此求出每个顶点的法向量。这个过程与哥罗德插值方法是相同的。<br>    根据顶点法向量，用插值方法求出每个边上各点的法向量。<br>    根据边上各点法向量，用插值方法求出每个面上各点的法向量。<br>    根据面上各个点的法向量，结合视点方向，计算每点的亮度。<br>    这种方法因为是计算向量的插值，所以计算复杂性要高于哥罗德插值方法，但是这种方法的效果要好于哥罗德插值方法。</p>
+<p>阴影生成方法</p>
+<p><em>自身阴影生成方法</em><br>    首先，计算自身阴影区域，把光源看作视点，使用隐藏面检测算法，得到光源照射不到的区域。该区域即为阴影区域。<br>    然后，根据视点位置计算可视面。<br>    最后，求光源照射不到的区域与可视区域的交集，交集所表示的区域就是自身阴影区域，在该区域绘制上阴影颜色。</p>
+<p><em>投射阴影生成方法</em><br>    首先，从视点出发，向阴影投射面发出一条射线，若中间没有物体遮挡，那么射线与阴影投射面有一个交点。<br>    然后，连接交点与光源，如果该交点与场景中物体相交，那么该点就是阴影区域的一点。否则，该点不在阴影区域。</p>
+<p>透明性</p>
+<p>$$I=(1-t)I_C+tI_t$$        $$0\leq t \leq1$$式中，t=0时对应不透明面，t=1时为透明面，t也称为透明度。</p>
+<p>整体光照模型</p>
+<p>$$I=I_1+I_sk_s+I_tK_t$$</p>
+<p>$$I_1$$光源直接照射引起的反射光亮度，用Phong简单光照模型计算；<br><img src="https://raw.githubusercontent.com/DoubleMagicXu/matlab/master/%E5%A4%8D%E4%B9%A0/Whitted.jpg" alt=""></p>
+<p>##虚拟现实</p>
+<p><em>虚拟现实（Virtual Reality）</em>是一种技术，这种技术可以应用于虚拟测试、虚拟游览、网上购物、游戏制作等许多领域。虚拟现实也可以定义为：使用计算机图形学相关技术制作的软硬设备结合在一起的一个可交互操作的虚拟系统。</p>
+<p>虚拟现实系统具备以下特性：<br>（1）能够提供三维的虚拟世界，使用者是在虚拟世界场景中自由虚拟活动的主体；<br>（2）使用者能够通过软件或硬件设备操纵或改变这个虚拟世界，就象真的置身于这个场景之中。</p>
+<p>VRML介绍</p>
+<p><em>VRML</em>的全称是Virtual Reality Modeling Language，是一种图形设计程序语言的国际标准，其规范由国际标准化组织(ISO)定义。</p>
+<p>V-Realm Builder</p>
+<p><em>V-Realm Builder</em>是商业化的优秀VRML编辑器，是由Ligo公司开发。是一个构造三维虚拟世界的软件（工具包），它生成的三维物体和虚拟世界可以用支持VRML的浏览器来观察。</p>
+<p>V-Realm Builder2常用节点的使用<br>    几何造型节点(几何体，Text)<br>    Translation组节点<br>    质感与质材节点（1）质感节点Material:。(2)质材节点:ImageTexture、Moivetexture以及PiexlTexture<br>    光源节点:DirectionalLight、PointLight和SpotLight(探照光源)</p>
+<p>复杂几何体造型节点　<br>    网格造型节点与万能几何节点<br>    拉伸造型节点<br>    万能几何节点</p>
+<p>##不规则物体建模</p>
+<p><em>分形技术</em></p>
+<p>在图形学中，一般把<em>分形定义</em>为具有自相似特性的图形点集。</p>
+<p><em>迭代函数系统</em>简记为IFS，是英文Iterated Function Systems的缩写。线性迭代函数系统的每个迭代函数表达式都是线性的，所以称为线性迭代表达式。<br><img src="https://raw.githubusercontent.com/DoubleMagicXu/matlab/master/%E5%A4%8D%E4%B9%A0/IFS.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/DoubleMagicXu/matlab/master/%E5%A4%8D%E4%B9%A0/Julia.jpg" alt=""></p>
+<p><em>基于图像的图形绘制</em></p>
+<p><em>非真实感图形绘制技术</em>：物体的不规则变换是非真实感图形绘制的一个主要技术手段，例如，二次变换、三次变换与三角变换等。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/18/数据挖掘/" rel="next" title="数据挖掘">
+                <i class="fa fa-chevron-left"></i> 数据挖掘
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/19/快速排序/" rel="prev" title="快速排序">
+                快速排序 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">DoubleMagicXu</p>
+              <p class="site-description motion-element" itemprop="description">学如逆水行舟,不进则退</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#图形学笔记"><span class="nav-number">1.</span> <span class="nav-text">图形学笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#曲线与曲面"><span class="nav-number">1.1.</span> <span class="nav-text">曲线与曲面</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#插值与拟合"><span class="nav-number">1.1.1.</span> <span class="nav-text">插值与拟合</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#几何造型"><span class="nav-number">1.2.</span> <span class="nav-text">几何造型</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DoubleMagicXu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
