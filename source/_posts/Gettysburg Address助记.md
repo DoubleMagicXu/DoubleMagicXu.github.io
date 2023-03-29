@@ -3,7 +3,7 @@ title: Gettysburg Address 助记
 date: 2019-06-23 
 tags: [演讲,英语]
 ---
-![](https://s2.loli.net/2022/04/02/vqlo17pcT8weM5x.jpg)
+![](https://s2.loli.net/2023/03/29/GnBsx26wlTMdQu9.jpg)
 <!-- more -->
 ---
 *Four score and seven years ago our fathers brought forth on this continent a new nation, conceived in liberty and dedicated to the proposition that all men are created equal.*
