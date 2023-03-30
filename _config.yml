@@ -77,5 +77,5 @@ theme: next7
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/DoubleMagicXu/DoubleMagicXu.github.io
+  repo: https://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@github.com/DoubleMagicXu/DoubleMagicXu.github.io
 branch: master
