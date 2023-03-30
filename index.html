@@ -152,6 +152,70 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2023/03/30/githubpage-migration-strategy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="DoubleMagicXu">
+      <meta itemprop="description" content="晚上吃什么">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DoubleMagicXu的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/03/30/githubpage-migration-strategy/" class="post-title-link" itemprop="url">githubpage migration strategy</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-03-30 09:51:37" itemprop="dateCreated datePublished" datetime="2023-03-30T09:51:37+08:00">2023-03-30</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="githubpage-migration-strategy"><a href="#githubpage-migration-strategy" class="headerlink" title="githubpage migration strategy"></a>githubpage migration strategy</h1><h2 id="generate-ssh-key"><a href="#generate-ssh-key" class="headerlink" title="generate ssh key"></a>generate ssh key</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;XXX@XXX.com&quot;</span><br><span class="line">//keep pressing ENTER</span><br><span class="line">cat ~/.ssh/id_rsa.pub</span><br><span class="line">//copy code</span><br></pre></td></tr></table></figure>
+<h2 id="add-new-ssh-key"><a href="#add-new-ssh-key" class="headerlink" title="add new ssh key"></a><a href="https://github.com/settings/ssh/">add new ssh key</a></h2><h2 id="hexo-migration"><a href="#hexo-migration" class="headerlink" title="hexo migration"></a><a href="https://www.zhihu.com/question/21193762/answer/79109280">hexo migration</a></h2><ol>
+<li>create two branches,maseter and hexo.set hexo as default bracnch where we place hexo configuration files.<br><img src="https://s2.loli.net/2023/03/30/QYFqRu4lref9nG5.png" alt="defaut branch.png"></li>
+<li>pull<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone ..</span><br></pre></td></tr></table></figure></li>
+<li>push hexo branch<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commmit -m &quot;xxx&quot;</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure></li>
+<li>push master branch<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g -d</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2023/03/28/%E6%97%A5%E5%AD%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -723,65 +787,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/21/%E5%85%B3%E4%BA%8E%E8%AF%BB%E4%B9%A6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="DoubleMagicXu">
-      <meta itemprop="description" content="晚上吃什么">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DoubleMagicXu的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/10/21/%E5%85%B3%E4%BA%8E%E8%AF%BB%E4%B9%A6/" class="post-title-link" itemprop="url">关于读书</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2017-10-21 20:16:09" itemprop="dateCreated datePublished" datetime="2017-10-21T20:16:09+08:00">2017-10-21</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>是不是可以搭建一个读书平台,主要功能包括在线阅读,书籍评分?如果可行的话，001号书就是《葛底斯堡演讲》，就这样愉快地钦定了!</p>
-<p><em>后记:万寿吾江,咱们二十大再见!</em></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -851,7 +856,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
